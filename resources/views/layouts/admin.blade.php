@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/welcome.js') }}" defer></script>
+    <script src="{{ asset('js/admin.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -72,7 +72,30 @@
                 </div>
             </div>
         </nav>
-
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header text-center">
+                          <b>Admin Screen Dashboard</b>
+                        </div>
+                        <div class="card-body">
+                          <div class="btn-toolbar" role="toolbar" style="justify-content: center; display: flex;" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                              <button type="button" class="btn btn-lg" onclick="window.location = '/admin/players';">Roster</button>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                              <button type="button" class="btn btn-lg" onclick="window.location = '/admin/practice';">Practice</button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Third group">
+                              <button type="button" class="btn btn-lg" onclick="window.location = '/admin/lineup';">Lineup</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>

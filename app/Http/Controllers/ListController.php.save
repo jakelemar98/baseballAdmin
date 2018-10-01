@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Http\Request;
+
+class ListController extends Controller
+{
+  public function show()
+  {
+   $posArr = ['P','C','1B','2B','3B','SS','LF','CF','RF'];
+   $players = DB::table('players')->get();
+   foreach($players as $players)
+   {
+	$players->position = $posArr[$players->position - 1];
+   }
+	dd($players);
+   return view('welcome')->withPlayers($players);
+  }
+}
