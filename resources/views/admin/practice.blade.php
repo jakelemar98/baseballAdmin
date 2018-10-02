@@ -44,7 +44,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form class="" action="practice/add" method="post">
+      <form class="" action="practice/add" method="post" id="practiceForm">
+        <input type="hidden" name="id" id="id" value="">
         @csrf
         <div class="modal-body">
           <div id="inital-asks">

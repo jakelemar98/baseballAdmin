@@ -43,4 +43,7 @@ Route::namespace('Admin')->group(function () {
 
   Route::get('admin/practice/get/{id}', 'PracticeController@getPractice')->name('getPractice');
 
+  Route::post('admin/practice/update', 'PracticeController@updatePractice')->name('updatePractice');
+
+  Route::post('admin/practice/delete', 'PracticeController@deletePractice')->name('deletePractice');
 });

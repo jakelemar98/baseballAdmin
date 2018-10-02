@@ -72,7 +72,63 @@ class PracticeController extends Controller
 
       $practiceId = $practice->practice_id;
 
-      return practiceEvents::where('practice_id', $practiceId)->get();
+      $events = practiceEvents::where('practice_id', $practiceId)->get();
 
+      $returnArr = [$practice, $events];
+
+      return $returnArr;
+    }
+
+    public function updatePractice(Request $request){
+      $name = $request->name;
+      $date = $request->date;
+      $start = $request->startTime;
+      $end = $request->endTime;
+      $interval = $request->interval;
+      $practiceId = $request->id;
+
+      practices::where('practice_id', $practiceId)->update([
+        'practice_name' => $name,
+        'practice_date' => $date,
+        'start_time' => $start,
+        'end_time' => $end,
+        'interval' => $interval,
+        'updated_at' => now()
+      ]);
+
+      $startTimeArr = $request->start;
+      $endTimeArr = $request->end;
+      $events = $request->event;
+      $eventsId = $request->eventId;
+
+      $length = count($startTimeArr);
+
+      for ($i=0; $i < $length; $i++) {
+        $eventId = $eventsId[$i];
+        practiceEvents::where('id', $eventId)->update([
+          "practice_id" => $practiceId,
+          "event_start" => $startTimeArr[$i],
+          "event_end" => $endTimeArr[$i],
+          "event_name" => $events[$i],
+          "updated_at" => now()
+        ]);
+      }
+
+      return redirect('/admin/practice');
+    }
+
+    public function deletePractice(Request $request){
+      $id = $request->id;
+
+      $practiceEvents = practiceEvents::where('practice_id', $id);
+
+      $practiceEvents->delete();
+
+
+      $practices = practices::find($id);
+
+      $practices->delete();
+
+      return redirect('/admin/practice');
     }
 }
