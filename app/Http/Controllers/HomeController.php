@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\practices;
+use App\practiceEvents;
 
 class HomeController extends Controller
 {
@@ -45,4 +47,10 @@ class HomeController extends Controller
 
       return $view;
     }
+
+   	 public function showPractice(){
+		$date = date('Y-m-d');
+		$practice = practices::all();
+		return view('home')->with('practice', $practice);
+	}
 }

@@ -13,12 +13,15 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/admin.js') }}" defer></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/autocomplete.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -87,8 +90,11 @@
                             <div class="btn-group mr-2" role="group" aria-label="Second group">
                               <button type="button" class="btn btn-lg" onclick="window.location = '/admin/practice';">Practice</button>
                             </div>
-                            <div class="btn-group" role="group" aria-label="Third group">
+                            <div class="btn-group mr-2" role="group" aria-label="Third group">
                               <button type="button" class="btn btn-lg" onclick="window.location = '/admin/lineup';">Lineup</button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Fourth group">
+                              <button type="button" class="btn btn-lg" onclick="window.location = '/admin/hitTrax';">HitTrax</button>
                             </div>
                           </div>
                         </div>

@@ -8,7 +8,10 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                  Home Screen
+                  @foreach($practice as $prac)
+			<h1>{{ $prac->practice_name  }}</h1>
+			<h2>{{ date("g:i a", strtotime("15:00"))  }}</h2>
+		  @endforeach
                 </div>
             </div>
         </div>

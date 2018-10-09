@@ -13,7 +13,6 @@
 //
 Route::get('/', 'HomeController@checkAccess')->name('root');
 
-
 Route::get('/logout', function () {
   Auth::logout();
 
@@ -21,6 +20,10 @@ Route::get('/logout', function () {
 });
 
 Auth::routes();
+
+Route::post('mail/send', 'MailController@send');
+
+Route::get('csv/read', 'CsvController@read');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -46,4 +49,14 @@ Route::namespace('Admin')->group(function () {
   Route::post('admin/practice/update', 'PracticeController@updatePractice')->name('updatePractice');
 
   Route::post('admin/practice/delete', 'PracticeController@deletePractice')->name('deletePractice');
+
+  Route::get('/admin/hitTrax', 'AdminController@showHitTrax')->name('hitTrax');
+
+  Route::post('/admin/hitTrax/add', 'HitTraxController@add')->name('addHitTrax');
+
+  Route::get('/admin/hitTrax/download/{file}', 'HitTraxController@downloadFile')->name('downloadHitTrax');
+
+  Route::get('/admin/hitTrax/create', 'HitTraxController@createReport')->name('createReportHitTrax');
+
+  Route::get('/admin/lineup', 'AdminController@showLineup')->name('lineup');
 });
