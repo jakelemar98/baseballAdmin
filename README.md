@@ -16,3 +16,10 @@ Easy to test and develop locally.
         - run command : docker exec -it laravel bash
         - once bash opens run command : php artisan migrate (this creates all the database tables in the post db container)
 6) Create a admin user and then all should be ready for development
+
+
+
+
+
+Possible Additions:
+    - composer require uxweb/sweet-alert (swal.JS)
