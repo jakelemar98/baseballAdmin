@@ -77,6 +77,12 @@ class AdminController extends Controller
   }
 
   public function showLineup(){
-    return view('admin.lineup');
+    $players = players::all();
+    $players = $players->groupBy(function($item){
+      $posArr = [1 => 'P', 2 => 'C', 3 => '1B', 4 => '2B', 5 => '3B', 6 => 'SS', 7 => 'LF', 8 => 'CF', 9 => 'RF'];
+      return $posArr[$item->position];
+    });
+    
+    return view('admin.lineup')->with('players', $players);
   }
 }

@@ -12,3 +12,8 @@ npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

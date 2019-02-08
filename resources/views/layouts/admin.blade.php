@@ -12,6 +12,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 
     <!-- Fonts -->
@@ -23,7 +25,7 @@
     <link href="{{ asset('css/autocomplete.css') }}" rel="stylesheet">
 
 </head>
-<body>
+<body background="{{ asset('images/background.jpg') }}">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -75,6 +77,7 @@
                 </div>
             </div>
         </nav>
+        <br>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
