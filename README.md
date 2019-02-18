@@ -23,3 +23,6 @@ Easy to test and develop locally.
 
 Possible Additions:
     - composer require uxweb/sweet-alert (swal.JS)
+    
+Trello Project (Scrum Board)
+    - https://trello.com/b/humNhSDM/seminar-project-laravel
