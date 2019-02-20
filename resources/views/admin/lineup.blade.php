@@ -7,8 +7,7 @@
   <div class="text-center jumbotron">
     <h1>Current Lineup</h1>
     <br>
-    <button class="btn btn-lg btn-primary pull-right" type="button" id="resetPositions" name="button">Reset Positions</button>
-    <table class="table table-bordered">
+    <table id="lineupTable" class="table table-bordered">
       <thead class="thead-dark">
         <tr>
           <th scope="col"></th>
@@ -25,7 +24,7 @@
             <th scope="row">P</th>
           @endif
           <td>
-            <select class="form-control" data-id="{{$i}}" data-label='player' id="player">
+            <select class="form-control player-box" data-row_id="{{$i - 1}}" data-label='player' id="player">
               <option value="SP" selected disabled>Select A Player</option>
               @foreach ($players as $key => $value)
                 @if($i < 10)
@@ -48,7 +47,7 @@
             </select>
           </td>
           <td>
-            <select class="form-control" data-label='position' data-id="{{$i}}" id="position{{$i}}">
+            <select class="form-control position-box" data-label='position' data-id="{{$i}}" id="position{{$i}}">
               <?php
                 $posArr = array("C","P","1B","2B","3B","SS","LF","CF","RF","DH");
               ?>
@@ -77,5 +76,7 @@
       </tbody>
     </table>
   </div>
+  <button type="button" class="btn btn-lg btn-warning" id="resetLineup" name="button">Reset Lineup</button>
+  <button type="button" class="btn btn-lg btn-primary" id="createLineup" name="button">Create Lineup</button>
 </div>
 @endsection

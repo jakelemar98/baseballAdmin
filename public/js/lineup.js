@@ -1,49 +1,77 @@
 $(document).ready(function(){
   var selectedPlayers = new Object();
   var selectedPositions = new Object();
-  $("select").on('change', function(){
-     var skipPlayer = false;
-     var playerSelected = false;
-     var positionSelected = false;
-     var player_id = this.value;
-     var selectRow = $(this).data('id');
 
+  // Fill position boxes on player select
+  $("select").on('change', function(){
+     var player_id = this.value;
+
+     //get data value from select boxes
+     var selectRow = $(this).data('id');
      var selectBox = $(this).data('label');
-     console.log(this.value);
+
      var label;
+
      if (selectBox != "position") {
        label = $(':selected', this).closest('optgroup').attr('label');
      }else {
        label = this.value;
-       skipPlayer = true
      }
-     if (Object.values(selectedPlayers).indexOf(player_id) !== -1 && !skipPlayer) {
-       swal("ERROR!","Player is already in the lineup!", "error");
-       playerSelected = true;
-     }
-     else if(!skipPlayer){
-       var key = "key"+selectRow;
-       console.log(key);
-       selectedPlayers[key] = player_id;
-     }
-     console.log(selectedPlayers);
-     if (Object.values(selectedPositions).indexOf(label) !== -1) {
-       swal("ERROR!", "You selected this position already", "error");
-       positionSelected = true
-     }else {
-       var key = "key"+selectRow;
-       selectedPositions[key] = label;
-     }
-     if (playerSelected === false && positionSelected === false) {
-       $('#position'+selectRow).val(label);
-     }else {
-       console.log("hey");
-       this.value = "SP";
-     }
-     console.log(selectedPlayers, selectedPositions);
+
+     $('#position'+selectRow).val(label);
   });
 
   $('#resetPositions').on('click', function(){
       selectedPositions = [];
   });
+
+  $('#createLineup').on('click', function(){
+    $('#lineupTable select').removeClass('btn-warning');
+    var players = $('.player-box');
+    var positions = $('.position-box');
+
+    jQuery.each(players, function(i, player){
+      players[i] = $(player).val();
+    });
+
+    jQuery.each(positions, function(i, position){
+      positions[i] = $(position).val();
+    });
+
+    var playArr = Array.from(Object.keys(players), k=>players[k]);
+
+    duplicatePlayers = getDuplicates(playArr);
+
+    if (!manageDuplicates(duplicatePlayers)) {
+      console.log("all good");
+    }
+  });
+
+  function getDuplicates(data) {
+    var duplicates = {};
+    for (var i = 0; i < data.length; i++) {
+        if(duplicates.hasOwnProperty(data[i])) {
+            duplicates[data[i]].push(i);
+        } else if (data.lastIndexOf(data[i]) !== i) {
+            duplicates[data[i]] = [i];
+        }
+    }
+    return duplicates;
+  };
+
+  function manageDuplicates(data){
+    dataLength = Object.keys(data).length
+    dataKeys = Object.keys(data);
+
+    for (var i = 0; i < dataKeys.length; i++) {
+      for (var j = 0; j < data[dataKeys[i]].length; j++) {
+        console.log(data[dataKeys[i]][j]);
+        $('[data-row_id="'+data[dataKeys[i]][j]+'"]').addClass('btn-warning')
+
+      }
+      console.log("there were both " + dataKeys[i]);
+    }
+
+    return true;
+  };
 });
